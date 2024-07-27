@@ -1,23 +1,42 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
-import { Session, Rating } from '@prisma/client';
+import { Session } from '@prisma/client';
 
 @Controller('sessions')
 export class SessionsController {
-  constructor(private sessionsService: SessionsService) {}
+  constructor(private readonly sessionsService: SessionsService) {}
 
   @Post()
-  async createSession(@Body() sessionData: { mentorId: number; menteeId: number; skillId: number; schedule: Date }): Promise<Session> {
-    return this.sessionsService.createSession(sessionData);
-  }
-
-  @Post('rate')
-  async rateSession(@Body() ratingData: { sessionId: number; score: number; comment: string }): Promise<Rating> {
-    return this.sessionsService.rateSession(ratingData.sessionId, ratingData.score, ratingData.comment);
+  async createSession(@Body() createSessionDto: { mentorId: number; menteeId: number; skillId: number; schedule: Date }): Promise<Session> {
+    const { mentorId, menteeId, skillId, schedule } = createSessionDto;
+    return this.sessionsService.createSession(mentorId, menteeId, skillId, schedule);
   }
 
   @Get()
-  async getSessions(): Promise<Session[]> {
-    return this.sessionsService.getSessions();
+  async getAllSessions(): Promise<Session[]> {
+    return this.sessionsService.getAllSessions();
+  }
+
+  @Get(':id')
+  async getSessionById(@Param('id', ParseIntPipe) id: number): Promise<Session> {
+    const session = await this.sessionsService.getSessionById(id);
+    if (!session) {
+      throw new NotFoundException(`Session with ID ${id} does not exist`);
+    }
+    return session;
+  }
+
+  @Put(':id')
+  async updateSession(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateSessionDto: { mentorId?: number; menteeId?: number; skillId?: number; schedule?: Date },
+  ): Promise<Session> {
+    const { mentorId, menteeId, skillId, schedule } = updateSessionDto;
+    return this.sessionsService.updateSession(id, mentorId, menteeId, skillId, schedule);
+  }
+
+  @Delete(':id')
+  async deleteSession(@Param('id', ParseIntPipe) id: number): Promise<Session> {
+    return this.sessionsService.deleteSession(id);
   }
 }

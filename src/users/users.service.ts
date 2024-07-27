@@ -14,4 +14,5 @@ export class UsersService {
   async getUsers(): Promise<User[]> {
     return this.prisma.user.findMany();
   }
+  
 }

@@ -1,7 +1,6 @@
-// app.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from './prisma.module'; // Ajuste o caminho conforme necessário
+import { PrismaModule } from './prisma.module'; 
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { SkillsModule } from './skills/skills.module';
@@ -14,7 +13,7 @@ import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
   imports: [
     ConfigModule.forRoot(),
     PrismaModule,
-    UsersModule, // Importa o UsersModule
+    UsersModule,
     AuthModule,
     SkillsModule,
     SessionsModule,

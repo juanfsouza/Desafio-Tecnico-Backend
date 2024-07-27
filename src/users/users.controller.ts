@@ -21,4 +21,5 @@ export class UsersController {
   async getUsers(): Promise<User[]> {
     return this.usersService.getUsers();
   }
+  
 }
