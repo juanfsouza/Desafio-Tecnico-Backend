@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String
+  role      Role
+  skills    UserSkill[]
+  mentorSessions  Session[] @relation("MentorSessions")
+  menteeSessions  Session[] @relation("MenteeSessions")
+}
+
+model Skill {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  users     UserSkill[]
+  sessions  Session[]
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  mentorId  Int
+  menteeId  Int
+  skillId   Int
+  schedule  DateTime
+  rating    Rating?
+  mentor    User @relation("MentorSessions", fields: [mentorId], references: [id])
+  mentee    User @relation("MenteeSessions", fields: [menteeId], references: [id])
+  skill     Skill @relation(fields: [skillId], references: [id])
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  sessionId Int @unique
+  score     Int
+  comment   String
+  session   Session @relation(fields: [sessionId], references: [id])
+}
+
+model UserSkill {
+  userId  Int
+  skillId Int
+  user    User @relation(fields: [userId], references: [id])
+  skill   Skill @relation(fields: [skillId], references: [id])
+  @@id([userId, skillId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
