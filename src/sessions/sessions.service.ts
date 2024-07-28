@@ -8,7 +8,7 @@ export class SessionsService {
   constructor(private prisma: PrismaService) {}
 
   async createSession(createSessionDto: CreateSessionDto): Promise<Session> {
-    const { mentorId, menteeId, skillId, schedule } = createSessionDto;
+    const { mentorId, menteeId, skillId, startTime, endTime } = createSessionDto;
 
     const mentor = await this.prisma.user.findUnique({ where: { id: mentorId } });
     const mentee = await this.prisma.user.findUnique({ where: { id: menteeId } });
@@ -31,11 +31,12 @@ export class SessionsService {
         mentorId,
         menteeId,
         skillId,
-        schedule: new Date(schedule),
+        startTime: new Date(startTime),
+        endTime: new Date(endTime),
       },
     });
   }
-  
+
   async getSessions(): Promise<any[]> {
     const sessions = await this.prisma.session.findMany({
       include: {
@@ -50,11 +51,12 @@ export class SessionsService {
       mentor: session.mentor.name,
       mentee: session.mentee.name,
       skill: session.skill.name,
-      schedule: session.schedule,
+      startTime: session.startTime,
+      endTime: session.endTime,
     }));
   }
 
-  async getSessionById(id: number): Promise<any> {  
+  async getSessionById(id: number): Promise<any> {
     const session = await this.prisma.session.findUnique({
       where: { id },
       include: {
@@ -73,7 +75,8 @@ export class SessionsService {
       mentor: session.mentor.name,
       mentee: session.mentee.name,
       skill: session.skill.name,
-      schedule: session.schedule,
+      startTime: session.startTime,
+      endTime: session.endTime,
     };
   }
 
