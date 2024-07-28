@@ -67,7 +67,7 @@
 - **Exemplo de Requisição:**
     ```json
     {
-      "name": "Nestj"
+      "name": "Nestjs"
     }
     ```
 
