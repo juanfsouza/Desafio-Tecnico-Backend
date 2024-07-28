@@ -104,8 +104,4 @@
 ## Considerações Finais
 - **Qualidade do Código:** Segui boas práticas de programação, incluindo Clean Code e Clean Architecture.
 - **Documentação:** Esta documentação cobre todas as funcionalidades e explica como configurar e utilizar a API.
-- **Opcional:** A integração com o Google Calendar foi uma escolha estratégica para facilitar o agendamento de sessões.
-
----
-
-Com todos esses pontos cobertos, você estará pronto para submeter seu projeto com confiança. Boa sorte!
+- **Opcional:** A integração com o Google Calendar foi uma escolha estratégica para facilitar o agendamento de sessões
