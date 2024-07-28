@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
+import { CreateSessionDto } from './dto/create-session.dto';
 import { Session } from '@prisma/client';
 
 @Controller('sessions')
@@ -7,32 +8,23 @@ export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}
 
   @Post()
-  async createSession(@Body() createSessionDto: { mentorId: number; menteeId: number; skillId: number; schedule: Date }): Promise<Session> {
-    const { mentorId, menteeId, skillId, schedule } = createSessionDto;
-    return this.sessionsService.createSession(mentorId, menteeId, skillId, schedule);
+  async createSession(@Body() createSessionDto: CreateSessionDto): Promise<Session> {
+    return this.sessionsService.createSession(createSessionDto);
   }
 
   @Get()
-  async getAllSessions(): Promise<Session[]> {
-    return this.sessionsService.getAllSessions();
+  async getSessions(): Promise<Session[]> {
+    return this.sessionsService.getSessions();
   }
 
   @Get(':id')
   async getSessionById(@Param('id', ParseIntPipe) id: number): Promise<Session> {
-    const session = await this.sessionsService.getSessionById(id);
-    if (!session) {
-      throw new NotFoundException(`Session with ID ${id} does not exist`);
-    }
-    return session;
+    return this.sessionsService.getSessionById(id);
   }
 
   @Put(':id')
-  async updateSession(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateSessionDto: { mentorId?: number; menteeId?: number; skillId?: number; schedule?: Date },
-  ): Promise<Session> {
-    const { mentorId, menteeId, skillId, schedule } = updateSessionDto;
-    return this.sessionsService.updateSession(id, mentorId, menteeId, skillId, schedule);
+  async updateSession(@Param('id', ParseIntPipe) id: number, @Body() updateSessionDto: CreateSessionDto): Promise<Session> {
+    return this.sessionsService.updateSession(id, updateSessionDto);
   }
 
   @Delete(':id')

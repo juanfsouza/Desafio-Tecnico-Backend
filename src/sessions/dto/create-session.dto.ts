@@ -1,15 +1,19 @@
-import { IsInt, IsDate } from 'class-validator';
+import { IsInt, IsNotEmpty, IsDateString } from 'class-validator';
 
 export class CreateSessionDto {
   @IsInt()
+  @IsNotEmpty()
   mentorId: number;
 
   @IsInt()
+  @IsNotEmpty()
   menteeId: number;
 
   @IsInt()
+  @IsNotEmpty()
   skillId: number;
 
-  @IsDate()
-  schedule: Date;
+  @IsDateString()
+  @IsNotEmpty()
+  schedule: string;
 }
