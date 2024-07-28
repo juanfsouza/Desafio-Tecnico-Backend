@@ -2,12 +2,14 @@
     
 # Mentorship Platform
 
+![Screenshot_3](https://github.com/user-attachments/assets/873c3566-2212-46da-98aa-46c444a29314)
+
 </div>
 
 ## Decisões Tomadas
 - **NestJS:** Utilizado por sua arquitetura modular e suporte a TypeScript.
 - **Prisma:** Utilizado para ORM devido à sua facilidade de uso e integração com PostgreSQL.
-- **Google Calendar API:** Escolhido para integração com calendários devido à sua popularidade e robustez.
+- **Opicional Google Calendar API:** Escolhido para integração com calendários devido à sua popularidade e robustez.
 
 ## Configuração e Execução do Projeto
 
@@ -20,7 +22,7 @@
 1. Clone o repositório:
     ```sh
     git clone https://github.com/your-repo/mentoring-platform.git
-    cd mentoring-platform
+    cd mentor-platform
     ```
 
 2. Instale as dependências:
@@ -28,7 +30,7 @@
     npm install
     ```
 
-3. Configure as variáveis de ambiente:
+3. Opcional Configure as variáveis de ambiente:
     - Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
         ```
         DATABASE_URL="sua_string_de_conexao_do_postgresql"
@@ -53,18 +55,20 @@
 - **Exemplo de Requisição:**
     ```json
     {
-      "name": "John Doe",
-      "email": "john.doe@example.com",
+      "name": "Ju",
+      "email": "Ju@example.com",
       "password": "securepassword",
       "role": "mentor" // ou "mentee"
     }
     ```
 
 ### Listagem de Habilidades
-- **Endpoint:** `GET /skills`
+- **Endpoint:** `POST /skills`
 - **Exemplo de Requisição:**
-    ```sh
-    curl -X GET http://localhost:3000/skills
+    ```json
+    {
+      "name": "Nestjs"
+    }
     ```
 
 ### Agendamento de Sessões de Mentoria
@@ -100,8 +104,4 @@
 ## Considerações Finais
 - **Qualidade do Código:** Segui boas práticas de programação, incluindo Clean Code e Clean Architecture.
 - **Documentação:** Esta documentação cobre todas as funcionalidades e explica como configurar e utilizar a API.
-- **Inovação:** A integração com o Google Calendar foi uma escolha estratégica para facilitar o agendamento de sessões.
-
----
-
-Com todos esses pontos cobertos, você estará pronto para submeter seu projeto com confiança. Boa sorte!
+- **Opcional:** A integração com o Google Calendar foi uma escolha estratégica para facilitar o agendamento de sessões
