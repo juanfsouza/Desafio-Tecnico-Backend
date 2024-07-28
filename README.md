@@ -65,7 +65,7 @@
 ### Listagem de Habilidades
 - **Endpoint:** `GET /skills`
 - **Exemplo de Requisição:**
-    ```sh
+    ```json
     {
       "name": "Nestj"
     }
