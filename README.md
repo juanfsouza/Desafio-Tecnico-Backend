@@ -7,7 +7,7 @@
 ## Decisões Tomadas
 - **NestJS:** Utilizado por sua arquitetura modular e suporte a TypeScript.
 - **Prisma:** Utilizado para ORM devido à sua facilidade de uso e integração com PostgreSQL.
-- **Google Calendar API:** Escolhido para integração com calendários devido à sua popularidade e robustez.
+- **Opicional Google Calendar API:** Escolhido para integração com calendários devido à sua popularidade e robustez.
 
 ## Configuração e Execução do Projeto
 
