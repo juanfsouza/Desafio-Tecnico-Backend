@@ -7,7 +7,6 @@ export class SessionsService {
   constructor(private prisma: PrismaService) {}
 
   async createSession(mentorId: number, menteeId: number, skillId: number, schedule: Date): Promise<Session> {
-    // Check if mentor, mentee, and skill exist
     const mentor = await this.prisma.user.findUnique({ where: { id: mentorId } });
     const mentee = await this.prisma.user.findUnique({ where: { id: menteeId } });
     const skill = await this.prisma.skill.findUnique({ where: { id: skillId } });

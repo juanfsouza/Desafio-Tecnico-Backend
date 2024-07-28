@@ -8,14 +8,14 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  email     String    @unique
-  password  String
-  name      String
-  role      Role
-  skills    UserSkill[]
-  mentorSessions  Session[] @relation("MentorSessions")
-  menteeSessions  Session[] @relation("MenteeSessions")
+  id              Int           @id @default(autoincrement())
+  email           String        @unique
+  password        String
+  name            String
+  role            Role
+  skills          UserSkill[]
+  mentorSessions  Session[]     @relation("MentorSessions")
+  menteeSessions  Session[]     @relation("MenteeSessions")
 }
 
 model Skill {
@@ -32,28 +32,29 @@ model Session {
   skillId   Int
   schedule  DateTime
   rating    Rating?
-  mentor    User @relation("MentorSessions", fields: [mentorId], references: [id])
-  mentee    User @relation("MenteeSessions", fields: [menteeId], references: [id])
+  mentor    User @relation("MentorSessions", fields: [mentorId], references: [id], onDelete: Cascade)
+  mentee    User @relation("MenteeSessions", fields: [menteeId], references: [id], onDelete: Cascade)
   skill     Skill @relation(fields: [skillId], references: [id])
 }
 
 model Rating {
   id        Int      @id @default(autoincrement())
-  sessionId Int @unique
+  sessionId Int      @unique
   score     Int
   comment   String
-  session   Session @relation(fields: [sessionId], references: [id])
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 }
 
 model UserSkill {
   userId  Int
   skillId Int
-  user    User @relation(fields: [userId], references: [id])
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
   skill   Skill @relation(fields: [skillId], references: [id])
   @@id([userId, skillId])
 }
 
 enum Role {
-  USER
-  ADMIN
+  MENTOR
+  MENTEE
 }
+

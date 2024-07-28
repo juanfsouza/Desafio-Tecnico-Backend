@@ -7,7 +7,6 @@ export class RatingsService {
   constructor(private prisma: PrismaService) {}
 
   async createRating(sessionId: number, score: number, comment: string): Promise<Rating> {
-    // Check if session exists
     const session = await this.prisma.session.findUnique({ where: { id: sessionId } });
     if (!session) {
       throw new NotFoundException(`Session with ID ${sessionId} does not exist`);

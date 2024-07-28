@@ -8,6 +8,7 @@ import { SessionsModule } from './sessions/sessions.module';
 import { RatingsModule } from './ratings/ratings.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
+import { GoogleCalendarModule } from './google-calendar/google-calendar.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
     SkillsModule,
     SessionsModule,
     RatingsModule,
+    GoogleCalendarModule,
   ],
   providers: [
     {
