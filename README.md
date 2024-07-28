@@ -2,6 +2,8 @@
     
 # Mentorship Platform
 
+![Screenshot_3](https://github.com/user-attachments/assets/873c3566-2212-46da-98aa-46c444a29314)
+
 </div>
 
 ## Decisões Tomadas
