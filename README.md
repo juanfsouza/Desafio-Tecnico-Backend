@@ -63,7 +63,7 @@
     ```
 
 ### Listagem de Habilidades
-- **Endpoint:** `GET /skills`
+- **Endpoint:** `POST /skills`
 - **Exemplo de Requisição:**
     ```json
     {
