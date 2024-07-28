@@ -76,10 +76,11 @@
 - **Exemplo de Requisição:**
     ```json
     {
-      "mentorId": 1,
-      "menteeId": 2,
-      "startTime": "2024-07-27T20:00:00Z",
-      "endTime": "2024-07-27T21:00:00Z"
+      "mentorId": 2,
+      "menteeId": 1,
+      "skillId": 1,
+      "startTime": "2024-07-30T16:00:00.000Z",
+      "endTime": "2024-07-31T18:00:00.000Z"
     }
     ```
 
