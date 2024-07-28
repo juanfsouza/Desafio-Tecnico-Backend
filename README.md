@@ -66,7 +66,9 @@
 - **Endpoint:** `GET /skills`
 - **Exemplo de Requisição:**
     ```sh
-    curl -X GET http://localhost:3000/skills
+    {
+      "name": "Nestj"
+    }
     ```
 
 ### Agendamento de Sessões de Mentoria
