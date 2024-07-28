@@ -20,7 +20,7 @@
 1. Clone o repositório:
     ```sh
     git clone https://github.com/your-repo/mentoring-platform.git
-    cd mentoring-platform
+    cd mentor-platform
     ```
 
 2. Instale as dependências:
