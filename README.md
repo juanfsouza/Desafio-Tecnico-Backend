@@ -53,8 +53,8 @@
 - **Exemplo de Requisição:**
     ```json
     {
-      "name": "John Doe",
-      "email": "john.doe@example.com",
+      "name": "Ju",
+      "email": "Ju@example.com",
       "password": "securepassword",
       "role": "mentor" // ou "mentee"
     }
