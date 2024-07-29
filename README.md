@@ -105,10 +105,11 @@
     }
     ```
 
-- **Calendar Criado:**
+### Calendar Criado:**
 ![Screenshot_1](https://github.com/user-attachments/assets/d19541db-d64e-4cc7-a086-87a0a67279ed)
 
 ![Screenshot_4](https://github.com/user-attachments/assets/4d74dbdd-f390-43ec-80fa-fcebd3000e43)
+</br>
 
 ## Considerações Finais
 - **Qualidade do Código:** Segui boas práticas de programação, incluindo Clean Code e Clean Architecture.
