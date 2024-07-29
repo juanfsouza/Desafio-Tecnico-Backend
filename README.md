@@ -97,10 +97,7 @@
 
 ### Integração com Google Calendar
 - **Autenticação:** `GET /google-calendar/auth`
-- **Criação de Evento:** `POST /google-calendar/create-event`
-- **Listagem de Eventos:** `GET /google-calendar/list-events`
-- **Atualização de Evento:** `PUT /google-calendar/update-event`
-- **Exclusão de Evento:** `DELETE /google-calendar/delete-event`
+- **Criação de Evento:** `POST /google-calendar/create-event/{TOKEN}`
 
 ## Considerações Finais
 - **Qualidade do Código:** Segui boas práticas de programação, incluindo Clean Code e Clean Architecture.
