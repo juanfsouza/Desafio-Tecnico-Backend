@@ -48,7 +48,7 @@ export class GoogleCalendarService {
     }
 
     const event = {
-      summary: `Session with ${session.mentor.name} and ${session.mentee.name} on skill ${session.skill.name}`,
+      summary: `Session with ${session.mentor.name} for ${session.mentee.name} on skill ${session.skill.name}`,
       description: `Session on skill ${session.skill.name}`,
       start: {
         dateTime: session.startTime.toISOString(),
