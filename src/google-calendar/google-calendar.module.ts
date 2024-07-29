@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { GoogleCalendarService } from './google-calendar.service';
 import { GoogleCalendarController } from './google-calendar.controller';
-import { ConfigModule } from '@nestjs/config';
+import { PrismaService } from 'src/prisma.service';
 
 @Module({
-  imports: [ConfigModule],
-  providers: [GoogleCalendarService],
+  imports: [],
   controllers: [GoogleCalendarController],
+  providers: [GoogleCalendarService, PrismaService],
+  exports: [GoogleCalendarService], 
 })
 export class GoogleCalendarModule {}

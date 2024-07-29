@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Post, Put, Delete, Query, Body, Redirect, Res } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { GoogleCalendarService } from './google-calendar.service';
 
 @Controller('google-calendar')
@@ -6,88 +6,39 @@ export class GoogleCalendarController {
   constructor(private googleCalendarService: GoogleCalendarService) {}
 
   @Get('auth')
-  @Redirect()
-  getAuthUrl() {
-    const url = this.googleCalendarService.generateAuthUrl();
-    return { url };
+  async authenticate() {
+    const authUrl = this.googleCalendarService.getAuthUrl();
+    return { url: authUrl };
   }
 
   @Get('callback')
-  async googleCallback(@Query('code') code: string, @Res() res) {
+  async handleCallback(@Query('code') code: string) {
+    if (!code) {
+      throw new BadRequestException('Authorization code is missing');
+    }
+
     try {
       const tokens = await this.googleCalendarService.getToken(code);
-      res.redirect(`/google-calendar/create-event?accessToken=${tokens.access_token}`);
+      return { message: 'Authorization successful', tokens };
     } catch (error) {
-      throw new BadRequestException('Failed to retrieve access token from Google');
+      throw new BadRequestException('Failed to exchange authorization code');
     }
   }
 
   @Post('create-event')
-  async createEvent(@Query('accessToken') accessToken: string, @Body() event: any) {
+  async createEvent(@Query('accessToken') accessToken: string, @Body('sessionId') sessionId: number) {
     if (!accessToken) {
       throw new BadRequestException('Access token is missing');
     }
 
-    if (!event) {
-      throw new BadRequestException('Event parameter is missing');
+    if (!sessionId) {
+      throw new BadRequestException('Session ID is missing');
     }
 
     try {
-      return this.googleCalendarService.createEvent(accessToken, event);
+      return await this.googleCalendarService.createEvent(accessToken, sessionId);
     } catch (error) {
       throw new BadRequestException('Failed to create event');
-    }
-  }
-
-  @Get('list-events')
-  async listEvents(@Query('accessToken') accessToken: string) {
-    if (!accessToken) {
-      throw new BadRequestException('Access token is missing');
-    }
-
-    try {
-      return this.googleCalendarService.listEvents(accessToken);
-    } catch (error) {
-      throw new BadRequestException('Failed to list events');
-    }
-  }
-
-  @Put('update-event')
-  async updateEvent(@Query('accessToken') accessToken: string, @Query('eventId') eventId: string, @Body() event: any) {
-    if (!accessToken) {
-      throw new BadRequestException('Access token is missing');
-    }
-
-    if (!eventId) {
-      throw new BadRequestException('Event ID is missing');
-    }
-
-    if (!event) {
-      throw new BadRequestException('Event parameter is missing');
-    }
-
-    try {
-      return this.googleCalendarService.updateEvent(accessToken, eventId, event);
-    } catch (error) {
-      throw new BadRequestException('Failed to update event');
-    }
-  }
-
-  @Delete('delete-event')
-  async deleteEvent(@Query('accessToken') accessToken: string, @Query('eventId') eventId: string) {
-    if (!accessToken) {
-      throw new BadRequestException('Access token is missing');
-    }
-
-    if (!eventId) {
-      throw new BadRequestException('Event ID is missing');
-    }
-
-    try {
-      await this.googleCalendarService.deleteEvent(accessToken, eventId);
-      return { message: 'Event deleted successfully' };
-    } catch (error) {
-      throw new BadRequestException('Failed to delete event');
     }
   }
 }
