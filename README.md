@@ -62,8 +62,6 @@
     }
     ```
 - **Endpoint:** `DELETE /users/{id}`
-- **Exemplo de Requisição:**
-</br>
 
 ### Listagem de Habilidades
 - **Endpoint:** `POST /skills`
@@ -81,8 +79,6 @@
     }
     ```
 - **Endpoint:** `DELETE /skills/{id}`
-- **Exemplo de Requisição:**
-</br>
 
 ### Agendamento de Sessões de Mentoria
 - **Endpoint:** `POST /sessions`
@@ -116,8 +112,6 @@
     }
     ```
 - **Endpoint:** `DELETE /ratings/{id}`
-- **Exemplo de Requisição:**
-</br>
 
 ### Integração com Google Calendar
 
