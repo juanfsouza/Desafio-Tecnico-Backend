@@ -116,23 +116,23 @@
 ### Integração com Google Calendar
 
 #### Autenticação e Armazenamento de Tokens
-1. **Obtenção da URL de Autorização:**
-   - **Endpoint:** `GET /google-calendar/auth`
-   - Este endpoint retorna uma URL para o usuário autorizar o acesso ao Google Calendar.
+**Obtenção da URL de Autorização:**
+- **Endpoint:** `GET /google-calendar/auth`
+- Este endpoint retorna uma URL para o usuário autorizar o acesso ao Google Calendar.
 
-2. **Criação de Eventos:**
-   - **Endpoint:** `POST /google-calendarcreate-event?accessToken={TOKEN}`
-   - **Exemplo de Requisição:**
-     ```json
-     {
-    	 "sessionId": 1
-     }
-     ```
-   - Este endpoint cria um evento no Google Calendar usando o token de acesso e o ID da sessão.
+**Criação de Eventos:**
+- **Endpoint:** `POST /google-calendarcreate-event?accessToken={TOKEN}`
+- **Exemplo de Requisição:**
+ ```json
+ {
+     "sessionId": 1
+ }
+ ```
+- Este endpoint cria um evento no Google Calendar usando o token de acesso e o ID da sessão.
 
-3. **Criação de Eventos:**
-   - **Endpoint:** `GET /google-calendar/tokens`
-   - Este endpoint acessa todos tokens salvo no banco de dados.
+**Criação de Eventos:**
+- **Endpoint:** `GET /google-calendar/tokens`
+- Este endpoint acessa todos tokens salvo no banco de dados.
 
 ### Calendar Criado
 ![Screenshot_1](https://github.com/user-attachments/assets/d19541db-d64e-4cc7-a086-87a0a67279ed)
