@@ -1,14 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { google } from 'googleapis';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class GoogleCalendarService {
   private oauth2Client;
-  private prisma: PrismaService; 
+  private readonly logger = new Logger(GoogleCalendarService.name);
 
-  constructor(prisma: PrismaService) {
-    this.prisma = prisma; 
+  constructor(private readonly prisma: PrismaService) {
     this.oauth2Client = new google.auth.OAuth2(
       process.env.GOOGLE_CLIENT_ID,
       process.env.GOOGLE_CLIENT_SECRET,
@@ -27,6 +26,17 @@ export class GoogleCalendarService {
   async getToken(code: string) {
     const { tokens } = await this.oauth2Client.getToken(code);
     this.oauth2Client.setCredentials(tokens);
+
+    await this.prisma.token.create({
+      data: {
+        accessToken: tokens.access_token,
+        refreshToken: tokens.refresh_token,
+        scope: tokens.scope,
+        tokenType: tokens.token_type,
+        expiryDate: new Date(tokens.expiry_date),
+      },
+    });
+
     return tokens;
   }
 
@@ -66,5 +76,16 @@ export class GoogleCalendarService {
     });
 
     return response.data;
+  }
+
+  async getStoredTokens() {
+    try {
+      const tokens = await this.prisma.token.findMany();
+      this.logger.log(`Retrieved tokens: ${JSON.stringify(tokens)}`);
+      return tokens;
+    } catch (error) {
+      this.logger.error('Error retrieving tokens', error);
+      throw new Error('Failed to retrieve tokens');
+    }
   }
 }

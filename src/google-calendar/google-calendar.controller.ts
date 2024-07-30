@@ -1,9 +1,11 @@
-import { BadRequestException, Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body, BadRequestException, Logger } from '@nestjs/common';
 import { GoogleCalendarService } from './google-calendar.service';
 
 @Controller('google-calendar')
 export class GoogleCalendarController {
-  constructor(private googleCalendarService: GoogleCalendarService) {}
+  private readonly logger = new Logger(GoogleCalendarController.name);
+
+  constructor(private readonly googleCalendarService: GoogleCalendarService) {}
 
   @Get('auth')
   async authenticate() {
@@ -21,6 +23,7 @@ export class GoogleCalendarController {
       const tokens = await this.googleCalendarService.getToken(code);
       return { message: 'Authorization successful', tokens };
     } catch (error) {
+      this.logger.error('Failed to exchange authorization code', error);
       throw new BadRequestException('Failed to exchange authorization code');
     }
   }
@@ -38,7 +41,19 @@ export class GoogleCalendarController {
     try {
       return await this.googleCalendarService.createEvent(accessToken, sessionId);
     } catch (error) {
+      this.logger.error('Failed to create event', error);
       throw new BadRequestException('Failed to create event');
+    }
+  }
+
+  @Get('tokens')
+  async getTokens() {
+    try {
+      const tokens = await this.googleCalendarService.getStoredTokens();
+      return tokens;
+    } catch (error) {
+      this.logger.error('Failed to retrieve tokens', error);
+      throw new BadRequestException('Failed to retrieve tokens');
     }
   }
 }

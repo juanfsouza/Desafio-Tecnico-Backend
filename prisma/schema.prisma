@@ -54,6 +54,16 @@ model UserSkill {
   @@id([userId, skillId])
 }
 
+model Token {
+  id          Int      @id @default(autoincrement())
+  accessToken String
+  refreshToken String
+  scope       String
+  tokenType   String
+  expiryDate  DateTime
+  createdAt   DateTime @default(now())
+}
+
 enum Role {
   MENTOR
   MENTEE

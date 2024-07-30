@@ -1,15 +1,19 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ParseIntPipe, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param, ParseIntPipe, HttpException, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user-dto';
-import { User } from '@prisma/client';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @ApiOperation({ summary: 'Create a new user' })
+  @ApiBody({ type: CreateUserDto })
+  @ApiResponse({ status: 201, description: 'The user has been successfully created.' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error' })
   @Post()
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async createUser(@Body() createUserDto: CreateUserDto) {
     try {
       return await this.usersService.createUser(createUserDto);
     } catch (error) {
@@ -18,13 +22,20 @@ export class UsersController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiResponse({ status: 200, description: 'List of users', type: [CreateUserDto] })
   @Get()
-  async getUsers(): Promise<User[]> {
+  async getUsers() {
     return this.usersService.getUsers();
   }
 
+  @ApiOperation({ summary: 'Get user by ID' })
+  @ApiParam({ name: 'id', type: Number, description: 'User ID' })
+  @ApiResponse({ status: 200, description: 'The user has been successfully retrieved.', type: [CreateUserDto] })
+  @ApiResponse({ status: 404, description: 'User not found' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error' })
   @Get(':id')
-  async getUserById(@Param('id', ParseIntPipe) id: number): Promise<User> {
+  async getUserById(@Param('id', ParseIntPipe) id: number) {
     try {
       return await this.usersService.getUserById(id);
     } catch (error) {
@@ -33,8 +44,13 @@ export class UsersController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete user by ID' })
+  @ApiParam({ name: 'id', type: Number, description: 'User ID' })
+  @ApiResponse({ status: 200, description: 'The user has been successfully deleted.', type: [CreateUserDto] })
+  @ApiResponse({ status: 404, description: 'User not found' })
+  @ApiResponse({ status: 500, description: 'Internal Server Error' })
   @Delete(':id')
-  async deleteUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
+  async deleteUser(@Param('id', ParseIntPipe) id: number) {
     try {
       console.log(`Deleting user with id: ${id}`);
       const deletedUser = await this.usersService.deleteUser(id);
