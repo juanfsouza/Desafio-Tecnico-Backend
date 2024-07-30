@@ -112,7 +112,7 @@
     ```
 - **Endpoint:** `PUT /ratings`
 - **Exemplo de Requisição:**
-- http://localhost:3000/skills/{id}
+  http://localhost:3000/skills/{id}
     ```json
     {
       "score": 4,
