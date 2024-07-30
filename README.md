@@ -121,7 +121,7 @@
    - Este endpoint retorna uma URL para o usuário autorizar o acesso ao Google Calendar.
 
 3. **Criação de Eventos:**
-   - **Endpoint:** `POST /google-calendar/create-event`
+   - **Endpoint:** `POST /google-calendar/create-event?accessToken={TOKEN}`
    - **Exemplo de Requisição:**
      ```json
      {
