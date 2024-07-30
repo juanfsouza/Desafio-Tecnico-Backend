@@ -150,4 +150,4 @@
 
 ## SWAGGER - Documentação teste
 - ** Link: http://localhost:3000/api#/
-- ** observão os endpoits de calendario não esta definido use o insomnia para testar agendamento do calendario
+- ** Observão: os endpoits de calendario não esta definido use o insomnia para testar agendamento do calendario.
