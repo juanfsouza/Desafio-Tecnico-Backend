@@ -61,6 +61,10 @@
       "role": "mentor" // ou "mentee"
     }
     ```
+- **Endpoint:** `DELETE /users`
+- **Exemplo de Requisição:**
+- http://localhost:3000/skills/{id}
+</br>
 
 ### Listagem de Habilidades
 - **Endpoint:** `POST /skills`
@@ -70,6 +74,18 @@
       "name": "Nestjs"
     }
     ```
+- **Endpoint:** `PUT /skills`
+- **Exemplo de Requisição:**
+- http://localhost:3000/skills/{id}
+    ```json
+    {
+      "name": "Java"
+    }
+    ```
+- **Endpoint:** `DELETE /skills`
+- **Exemplo de Requisição:**
+- http://localhost:3000/skills/{id}
+</br>
 
 ### Agendamento de Sessões de Mentoria
 - **Endpoint:** `POST /sessions`
@@ -94,16 +110,36 @@
       "comment": "Great session!"
     }
     ```
-
-### Integração com Google Calendar
-- **Autenticação:** `GET /google-calendar/auth`
-- **Criação de Evento:** `POST /google-calendar/create-event/{TOKEN}`
+- **Endpoint:** `PUT /ratings`
 - **Exemplo de Requisição:**
+- http://localhost:3000/skills/{id}
     ```json
     {
-      "sessionId": 3
+      "score": 4,
+      "comment": "nice session."
     }
     ```
+- **Endpoint:** `DELETE /ratings`
+- **Exemplo de Requisição:**
+- http://localhost:3000/ratings/{id}
+</br>
+
+### Integração com Google Calendar
+
+#### Autenticação e Armazenamento de Tokens
+1. **Obtenção da URL de Autorização:**
+   - **Endpoint:** `GET /google-calendar/auth`
+   - Este endpoint retorna uma URL para o usuário autorizar o acesso ao Google Calendar.
+
+3. **Criação de Eventos:**
+   - **Endpoint:** `POST /google-calendar/create-event`
+   - **Exemplo de Requisição:**
+     ```json
+     {
+       "sessionId": 1
+     }
+     ```
+   - Este endpoint cria um evento no Google Calendar usando o token de acesso e o ID da sessão.
 
 ### Calendar Criado
 ![Screenshot_1](https://github.com/user-attachments/assets/d19541db-d64e-4cc7-a086-87a0a67279ed)
@@ -116,5 +152,5 @@
 - **Documentação:** Esta documentação cobre todas as funcionalidades e explica como configurar e utilizar a API.
 - **Opcional:** A integração com o Google Calendar foi uma escolha estratégica para facilitar o agendamento de sessões
 
-## INSOMNIA - Com todos endpoits prontos
-- ** Link: https://drive.google.com/file/d/1w_88YKLHBFIhKpQWby2w2SPxupb7dE3b/view?usp=sharing
+## INSOMNIA - Json com todos endpoints prontos
+- ** Link: https://drive.google.com/file/d/12FFZm82JFctQnI3_PzZ7CU-DiQv8Awpx/view?usp=sharing
