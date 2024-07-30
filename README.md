@@ -112,7 +112,7 @@
     }
     ```
 - **Endpoint:** `DELETE /ratings/{id}`
-
+  
 ### Integração com Google Calendar
 
 #### Autenticação e Armazenamento de Tokens
@@ -120,15 +120,19 @@
    - **Endpoint:** `GET /google-calendar/auth`
    - Este endpoint retorna uma URL para o usuário autorizar o acesso ao Google Calendar.
 
-3. **Criação de Eventos:**
-   - **Endpoint:** `POST /google-calendar/create-event?accessToken={TOKEN}`
+2. **Criação de Eventos:**
+   - **Endpoint:** `POST /google-calendarcreate-event?accessToken={TOKEN}`
    - **Exemplo de Requisição:**
      ```json
      {
-       "sessionId": 1
+    	 "sessionId": 1
      }
      ```
    - Este endpoint cria um evento no Google Calendar usando o token de acesso e o ID da sessão.
+
+3. **Criação de Eventos:**
+   - **Endpoint:** `GET /google-calendar/tokens`
+   - Este endpoint acessa todos tokens salvo no banco de dados.
 
 ### Calendar Criado
 ![Screenshot_1](https://github.com/user-attachments/assets/d19541db-d64e-4cc7-a086-87a0a67279ed)
@@ -143,3 +147,7 @@
 
 ## INSOMNIA - Json com todos endpoints prontos
 - ** Link: https://drive.google.com/file/d/12FFZm82JFctQnI3_PzZ7CU-DiQv8Awpx/view?usp=sharing
+
+## SWAGGER - Documentação teste
+- ** Link: http://localhost:3000/api#/
+- ** Observão: os endpoits de calendario não esta definido use o insomnia para testar agendamento do calendario.
