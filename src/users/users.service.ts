@@ -22,13 +22,6 @@ export class UsersService {
     });
   }
 
-  async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    return this.prisma.user.update({
-      where: { id },
-      data: updateUserDto,
-    });
-  }
-
   async deleteUser(id: number): Promise<User> {
     try {
       console.log(`Service: Deleting user with id: ${id}`);

@@ -33,16 +33,6 @@ export class UsersController {
     }
   }
 
-  @Put(':id')
-  async updateUser(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto): Promise<User> {
-    try {
-      return await this.usersService.updateUser(id, updateUserDto);
-    } catch (error) {
-      console.error('Error in updateUser controller:', error);
-      throw new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-
   @Delete(':id')
   async deleteUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
     try {
