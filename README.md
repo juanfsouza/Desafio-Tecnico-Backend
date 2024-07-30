@@ -31,12 +31,12 @@
     ```
 
 3. Opcional Configure as variáveis de ambiente:
-    - Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
-        ```
-        DATABASE_URL="sua_string_de_conexao_do_postgresql"
-        GOOGLE_CLIENT_ID="seu_client_id_do_google"
-        GOOGLE_CLIENT_SECRET="seu_client_secret_do_google"
-        ```
+- Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+    ```
+    DATABASE_URL="sua_string_de_conexao_do_postgresql"
+    GOOGLE_CLIENT_ID="seu_client_id_do_google"
+    GOOGLE_CLIENT_SECRET="seu_client_secret_do_google"
+    ```
 
 4. Execute as migrações do banco de dados:
     ```sh
@@ -123,11 +123,11 @@
 **Criação de Eventos:**
 - **Endpoint:** `POST /google-calendarcreate-event?accessToken={TOKEN}`
 - **Exemplo de Requisição:**
- ```json
- {
-     "sessionId": 1
- }
- ```
+     ```json
+     {
+         "sessionId": 1
+     }
+     ```
 - Este endpoint cria um evento no Google Calendar usando o token de acesso e o ID da sessão.
 
 **Criação de Eventos:**
