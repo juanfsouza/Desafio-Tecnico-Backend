@@ -61,9 +61,8 @@
       "role": "mentor" // ou "mentee"
     }
     ```
-- **Endpoint:** `DELETE /users`
+- **Endpoint:** `DELETE /users/{id}`
 - **Exemplo de Requisição:**
-- http://localhost:3000/skills/{id}
 </br>
 
 ### Listagem de Habilidades
@@ -74,17 +73,15 @@
       "name": "Nestjs"
     }
     ```
-- **Endpoint:** `PUT /skills`
+- **Endpoint:** `PUT /skills/{id}`
 - **Exemplo de Requisição:**
-- http://localhost:3000/skills/{id}
     ```json
     {
       "name": "Java"
     }
     ```
-- **Endpoint:** `DELETE /skills`
+- **Endpoint:** `DELETE /skills/{id}`
 - **Exemplo de Requisição:**
-- http://localhost:3000/skills/{id}
 </br>
 
 ### Agendamento de Sessões de Mentoria
@@ -110,18 +107,16 @@
       "comment": "Great session!"
     }
     ```
-- **Endpoint:** `PUT /ratings`
+- **Endpoint:** `PUT /ratings/{id}`
 - **Exemplo de Requisição:**
-  http://localhost:3000/skills/{id}
     ```json
     {
       "score": 4,
       "comment": "nice session."
     }
     ```
-- **Endpoint:** `DELETE /ratings`
+- **Endpoint:** `DELETE /ratings/{id}`
 - **Exemplo de Requisição:**
-- http://localhost:3000/ratings/{id}
 </br>
 
 ### Integração com Google Calendar
