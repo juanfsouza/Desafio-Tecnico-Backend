@@ -145,9 +145,9 @@
 - **Documentação:** Esta documentação cobre todas as funcionalidades e explica como configurar e utilizar a API.
 - **Opcional:** A integração com o Google Calendar foi uma escolha estratégica para facilitar o agendamento de sessões
 
-## INSOMNIA - Json com todos endpoints prontos
+## INSOMNIA - json com todos endpoints prontos
 - ** Link: https://drive.google.com/file/d/12FFZm82JFctQnI3_PzZ7CU-DiQv8Awpx/view?usp=sharing
 
-## SWAGGER - Documentação teste
+## SWAGGER - teste
 - ** Link: http://localhost:3000/api#/
 - ** Observão: os endpoits de calendario não esta definido use o insomnia para testar agendamento do calendario.
