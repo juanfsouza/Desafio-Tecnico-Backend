@@ -22,7 +22,7 @@
 1. Clone o repositório:
     ```sh
     git clone https://github.com/juanfsouza/Desafio-Tecnico-Backend.git
-    cd mentor-platform
+    cd Desafio-Tecnico-Backend
     ```
 
 2. Instale as dependências:
