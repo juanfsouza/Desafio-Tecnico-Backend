@@ -21,7 +21,7 @@
 ### Configuração
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/your-repo/mentoring-platform.git
+    git clone https://github.com/juanfsouza/Desafio-Tecnico-Backend.git
     cd mentor-platform
     ```
 
