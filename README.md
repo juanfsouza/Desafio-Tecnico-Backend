@@ -148,6 +148,6 @@
 ## INSOMNIA - json com todos endpoints prontos
 - ** Link: https://drive.google.com/file/d/12FFZm82JFctQnI3_PzZ7CU-DiQv8Awpx/view?usp=sharing
 
-## SWAGGER - teste
+## SWAGGER
 - ** Link: http://localhost:3000/api#/
 - ** Observão: os endpoits de calendario não esta definido use o insomnia para testar agendamento do calendario.
